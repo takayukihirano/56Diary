@@ -23,7 +23,7 @@ class DiaryController extends Controller
         // view/diaries/index.blade.phpを表示
         // フォルダ名.ファイル名(blade.phpは除く)
         return view('diaries.index', [
-            // キー　=> 値
+            // キー => 値
             'diaries' => $diaries
         ]);
     }
