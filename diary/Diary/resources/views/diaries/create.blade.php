@@ -20,7 +20,7 @@
 
              @endif
 
-            <form action="{{ route('diary.store') }}" method="POST">
+            <form action="{{ route('diary.update') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="title">タイトル</label>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary">投稿</button>
+                    <button type="submit" class="btn btn-primary">編集</button>
                 </div>
 
 
