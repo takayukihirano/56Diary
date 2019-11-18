@@ -1,5 +1,5 @@
 <!-- layout.blade.phpを読み込む -->
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '新規追加')
 
@@ -20,7 +20,7 @@
 
              @endif
 
-            <form action="{{ route('diary.update') }}" method="POST">
+            <form action="{{ route('diary.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="title">タイトル</label>
