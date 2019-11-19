@@ -62,6 +62,11 @@ class DiaryController extends Controller
     {
         // Diaryモデルを使用して、IDが一致する日記の取得
         $diary = Diary::find($id);
+        // ログインユーザーが日記の投稿者かチェックする
+        if (Auth::user()->id != $diary->user_id){
+            // 投稿者とログインユーザーが違う場合
+            abort(403);
+        }
         // 取得した日記の削除
         $diary->delete();
         // 一覧画面にリダイレクト
@@ -69,10 +74,16 @@ class DiaryController extends Controller
     }
 
     // 編集画面を表示する
-    public function edit(int $id)
+    public function edit(Diary $diary)
     {
+        // ログインユーザーが日記の投稿者かチェックする
+        if (Auth::user()->id != $diary->user_id){
+            // 投稿者とログインユーザーが違う場合
+            abort(403);
+        }
+
         // 受け取ったIDを元に日記を取得
-        $diary = Diary::find($id);
+        // $diary = Diary::find($id);
         // 編集画面を返す。同時に画面に取得した日記を渡す
         return view('diaries.edit', [
             // キー => 値
@@ -87,6 +98,12 @@ class DiaryController extends Controller
     {
         // 受けっとったIDを元に日記を取得
         $diary = Diary::find($id);
+
+        // ログインユーザーが日記の投稿者かチェックする
+        if (Auth::user()->id != $diary->user_id){
+            // 投稿者とログインユーザーが違う場合
+            abort(403);
+        }
 
         // 取得した日記のタイトル、本文を書き換える
         $diary->title = $request->title;
